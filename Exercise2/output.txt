@@ -1,0 +1,14 @@
+
+Depositing 5000
+Lily (AccNo.: ACC113456) -- $5000
+
+Withdrawing -500
+Amount cannot be negative
+Lily (AccNo.: ACC113456) -- $5000
+
+Withdrawing 200.12
+Lily (AccNo.: ACC113456) -- $4799.88
+
+Withdrawing 5100
+Insufficient funds
+Lily (AccNo.: ACC113456) -- $4799.88
