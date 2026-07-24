@@ -1,0 +1,8 @@
+1. Out of Stock : Mouse, Headset
+2. Expensive Products: Monitor. Headset. Keyboard. Webcam. 
+3. Total Value: 9955.00
+4. Most Epensive Product: Monitor - 5 - 899.00
+5. Has product cost more than 500? True
+6. Number of products in stock: 4
+7. Total Stock: Mouse. Monitor. Webcam. Headset. New Item. 
+8. Total Products: Mouse. Monitor. Webcam. Headset. 
