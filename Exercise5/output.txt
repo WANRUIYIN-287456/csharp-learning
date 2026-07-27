@@ -1,0 +1,20 @@
+Q1. Join
+100. Acme Corp - Keyboard - RM150.00
+101. Globex Inc - Monitor - RM899.00
+102. Acme Corp - Mouse - RM45.50
+103. Globex Inc - Webcam - RM120.00
+104. Acme Corp - Headset - RM250.00
+
+Q2. Group By
+Acme Corp: RM445.50
+Globex Inc: RM1,019.00
+
+3. Dictionary 
+Key not found
+
+Q4. HashSet
+100. 1 - Keyboard - RM150.00
+101. 2 - Monitor - RM899.00
+102. 1 - Mouse - RM45.50
+103. 2 - Webcam - RM120.00
+104. 1 - Headset - RM250.00
