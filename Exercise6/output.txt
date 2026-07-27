@@ -1,0 +1,17 @@
+Verifying account...
+Account verified.
+
+Depositing 5000
+Deposited 5000.00, new balance: 5000.00
+
+Withdrawing 200.12
+Withdrew 200.12, new balance: 4799.88
+
+Withdrawing -500
+error: Amount cannot be negative
+
+Withdrawing 5100
+error: Insufficient funds
+
+Display name (no nickname): Lily
+Display name (with nickname): Lily's Savings
