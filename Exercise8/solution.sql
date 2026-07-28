@@ -64,3 +64,33 @@ EXEC GetCustomerOrders @CustomerId = 1;
 -- Drop procedure if needed
 DROP PROCEDURE IF EXISTS GetCustomerOrders;
 GO
+
+-- PART E: TRANSACTION + MERGE
+-- 1. TRANSACTION
+BEGIN TRANSACTION;
+INSERT INTO Orders (CustomerId, ProductId, Quantity) VALUES (1, 1, 2);
+
+IF (SELECT Stock FROM Products WHERE Id = 1 ) < 500
+BEGIN
+	ROLLBACK TRANSACTION;
+	PRINT 'Insufficient stock, rolled back';
+END
+ELSE
+BEGIN
+	UPDATE Products SET Stock = Stock - 500 WHERE Id = 1;
+	COMMIT TRANSACTION;
+END
+
+-- 2. MERGE
+MERGE INTO Products AS target
+USING (VALUES('Keyboard2', 180.00, 25)) AS source (Name, Price, Stock)
+ON target.Name = source.Name
+WHEN MATCHED THEN
+	UPDATE SET Price = source.Price, Stock = source.Stock
+WHEN NOT MATCHED THEN 
+	INSERT (Name, Price, Stock) VALUES (source.Name, source.Price, source.Stock);
+
+-- Delete some products if needed
+DELETE FROM Products WHERE Id IN (5, 6, 7);
+DELETE FROM Orders WHERE Id IN (6, 7, 8);
+DELETE FROM Customers WHERE Id IN (4, 5, 6);
