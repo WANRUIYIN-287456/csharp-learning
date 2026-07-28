@@ -1,0 +1,34 @@
+@model ProductListViewModel
+
+<h2>Products</h2>
+<a asp-action="Create">Add Product</a>
+<!-- 
+Do not need to add <body></body> as this is not a full HTML page. This partial fragment gets
+injected into _Layout.cshtml's "alias-symbol here"RenderBody(), which already has body tags.
+-->
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Products)
+        {
+            <tr>
+                <td>@p.Name</td>
+                <td>@p.Price.ToString("F2")</td>
+                <td>@p.Stock</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                Total Stock Value: $@Model.TotalStockValue.ToString("F2")
+            </td>
+        </tr>
+    </tfoot>
+</table>
