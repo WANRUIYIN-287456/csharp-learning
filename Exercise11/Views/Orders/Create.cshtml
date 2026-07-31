@@ -1,0 +1,17 @@
+
+@model Order
+
+<form asp-action="Create" method="post">
+    <label>Customer:</label>
+    <select asp-for="CustomerId" asp-items="ViewBag.Customers"></select>
+
+    <label>Product:</label>
+    <select asp-for="ProductId" asp-items="ViewBag.Products"></select>
+
+    <label>Quantity:</label>
+    <input asp-for="Quantity" />
+    
+    <div asp-validation-summary="All"></div>
+
+    <button type="submit">Create</button>
+</form>

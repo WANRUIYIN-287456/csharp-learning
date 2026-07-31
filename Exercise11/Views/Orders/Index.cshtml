@@ -1,0 +1,28 @@
+@model List<Order>
+
+<h2>Orders</h2>
+
+<a asp-action="Create">Add Order</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Order Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var o in Model)
+        {
+            <tr>
+                <td>@o.Customer.Name</td>
+                <td>@o.Product.Name</td>
+                <td>@o.Quantity</td>
+                <td>@o.OrderDate.ToString("yyyy-MM-dd")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+    
