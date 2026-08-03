@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 public class OrdersController : Controller
 {
@@ -73,7 +74,15 @@ public class OrdersController : Controller
             return View(order);
         }
 
-        using var transaction = await _context.Database.BeginTransactionAsync();
+        // IsRelational returns true for relational databases while returns false for in-memory provider
+        var supportsTransactions = _context.Database.IsRelational();
+        
+        IDbContextTransaction? transaction = null;
+        if (supportsTransactions)
+        {
+            transaction = await _context.Database.BeginTransactionAsync();
+        }
+
         try
         {
             var product = await _context.Products.FindAsync(order.ProductId);
@@ -89,13 +98,13 @@ public class OrdersController : Controller
             _context.Orders.Add(order);
 
             await _context.SaveChangesAsync();
-            await transaction.CommitAsync();
+            if (transaction != null)  await transaction.CommitAsync();
 
             return RedirectToAction("Index");
         }
         catch
         {
-            await transaction.RollbackAsync();
+            if (transaction != null) await transaction.RollbackAsync();
             throw;
         }
     }
